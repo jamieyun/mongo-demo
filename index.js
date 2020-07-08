@@ -54,7 +54,7 @@ async function getCourses(){
     // Ends with yun
     // .find({author:/Yun$/i})
     //Contains Jamie
-    .find({author:/.*Jamie Y.*$/i})
+    .find({author:/.*Jamie.*$/i})
 
     // .find({author: 'Jamie', isPublished: true})
     // .find({price: { $gt: 10 }})
@@ -67,7 +67,8 @@ async function getCourses(){
     // .and([ ])
     .limit(10)
     .sort({ name: -1})
-    .select({ name: 1, tags: 1 })
+    // .select({ name: 1, tags: 1 })
+    .count()
     ;
     console.log(courses)
 }
