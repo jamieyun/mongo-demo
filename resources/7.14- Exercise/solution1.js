@@ -17,8 +17,9 @@ async function getCourses() {
   return await Course
   .find({ isPublished: true, tags: 'backend' })
   // .sort({ name: 1 })
-  .sort('author')
-  .select({ name: 1, author: 1 });
+  .sort('-author')
+  // .select({ name: 1, author: 1 });
+  .select('name author');
 }
 
 async function run() {
