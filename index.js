@@ -113,4 +113,11 @@ async function updateCourse(id){
 
 }
 // getCourses();
-updateCourse('5f0531a582ef8aa49cac54d9');
+
+async function removeCourse(id){
+//    const result = await Course.deleteOne({_id: id});
+// const result = await Course.deleteMany({_id: id});
+    const result = await Course.deleteOne({name: id});
+    console.log(result)
+}
+removeCourse('Express.js Course');
