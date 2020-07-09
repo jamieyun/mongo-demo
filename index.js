@@ -5,7 +5,7 @@ mongoose.connect('mongodb://localhost/playground')
 .catch(error => console.log('Could not connect to MongoDB...',error));
 
 const courseSchema = new mongoose.Schema({
-    name: String,
+    name: {type: String, required: true},
     author: String,
     tags: [ String ],
     date: { type:Date, default: Date.now },
@@ -16,23 +16,27 @@ const Course = mongoose.model('Course', courseSchema);
 //Course, nodeCourse
 async function createCourse(){
 
+    const course = new Course({
+        // name: 'Angular Course',
+        author: 'Jamie',
+        tags:['angular','frontend'],
+        isPublished: true
+    });
 
-const course = new Course({
-    name: 'Angular Course',
-    author: 'Jamie',
-    tags:['angular','frontend'],
-    isPublished: true
-});
+    try {
+        await course.validate((err) => {
+            if(err){
+                //logic
+            }
+        });    
+       
+        // console.log(result);
+    } catch (error) {
+        console.log(error.message)
+    }
 
-try {
-    const result = await course.save();    
-    console.log(result);
-} catch (error) {
-    console.log(error)
 }
-
-}
-
+createCourse();
 async function getCourses(){
     //eq(equal)
     //ne(not equal)
@@ -120,4 +124,4 @@ async function removeCourse(id){
     const result = await Course.deleteOne({name: id});
     console.log(result)
 }
-removeCourse('Express.js Course');
+// removeCourse('Express.js Course');
