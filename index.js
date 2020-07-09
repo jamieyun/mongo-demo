@@ -26,7 +26,9 @@ const courseSchema = new mongoose.Schema({
         required: function(){
             //arrow func 은 this 를 사용할수 없음!!
             return this.isPublished;
-        }
+        },
+        min: 10,
+        max: 200,
     }
 });
 const Course = mongoose.model('Course', courseSchema);
