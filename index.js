@@ -86,20 +86,25 @@ async function updateCourse(id){
     //Modify its properties
     // save()
     console.log(id)
-    const course = await Course.findById(id);
+    const result = await Course.findByIdAndUpdate(id , {
+        $set:{
+            author: 'Jason',
+            isPublished: false
+        }
+    } , { new: true});
     // console.log(course)
-    if(!course) return;
+    // if(!course) return;
 
-    if(course.isPublished) return;
-    
-    course.isPublished = true;
-    course.author = 'Another Author';
+    // if(course.isPublished) return;
+
+    // course.isPublished = true;
+    // course.author = 'Another Author';
     // course.set({
     //     isPublished: true,
     //     author: 'Another Author'
     // });
 
-    const result = await course.save();
+    // const result = await course.save();
     console.log(result);
 
     //Approach: update first
