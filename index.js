@@ -13,6 +13,7 @@ const courseSchema = new mongoose.Schema({
     price:{
         type: Number,
         required: function(){
+            //arrow func 은 this 를 사용할수 없음!!
             return this.isPublished;
         }
     }
@@ -23,16 +24,16 @@ const Course = mongoose.model('Course', courseSchema);
 async function createCourse(){
 
     const course = new Course({
-        name: 'Angular Course',
+        // name: 'Angular Course',
         author: 'Jamie',
         tags:['angular','frontend'],
         isPublished: true
     });
 
     try {
-        await course.validate();    
+        const result = await course.save();    
        
-        // console.log(result);
+        console.log(result);
     } catch (error) {
         console.log(error.message)
     }
