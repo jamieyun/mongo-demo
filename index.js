@@ -62,7 +62,7 @@ async function createCourse(){
         author: 'Jamie',
         tags:['frontend'],
         isPublished: true,
-        price: 15,        
+        price: 15.8,        
     });
 
     try {
@@ -78,7 +78,7 @@ async function createCourse(){
     }
 
 }
-createCourse();
+// createCourse();
 async function getCourses(){
     //eq(equal)
     //ne(not equal)
@@ -105,8 +105,8 @@ async function getCourses(){
     // Ends with yun
     // .find({author:/Yun$/i})
     //Contains Jamie
-    .find({author:/.*Jamie.*$/i})
-
+    // .find({author:/.*Jamie.*$/i})
+    .find({_id:'5f068120cb7d130fcaa2721e'})
     // .find({author: 'Jamie', isPublished: true})
     // .find({price: { $gt: 10 }})
     // .find({price: { $gte: 10, $lte: 20 }})
@@ -117,15 +117,15 @@ async function getCourses(){
     // .or([ {author:'Jamie'}, {isPublished: true} ])
     // .and([ ])
 
-    .skip((pageNumber - 1) * pageSize)//pagination
-    .limit(pageSize)
+    // .skip((pageNumber - 1) * pageSize)//pagination
+    // .limit(pageSize)
     .sort({ name: -1})
     // .select({ name: 1, tags: 1 })
     // .count()
     ;
-    console.log(courses)
+    console.log(courses[0].price)
 }
-
+getCourses();
 async function updateCourse(id){
     // Approach : Query first
     // findbyid()
